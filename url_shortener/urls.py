@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from app.views import FirstView, redirect_view
+from app.views import FirstView, redirect_view, BookmarkListView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', FirstView.as_view(), name='first_view'),
-    url(r'(?P<captured_id>\w+\d+)', redirect_view)
+    url(r'^list/$', BookmarkListView.as_view(), name='list_view'),
+    url(r'j/(?P<captured_id>\w+)', redirect_view)
 ]

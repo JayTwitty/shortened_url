@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+<ul class="nav nav-tabs">
+  <li role="presentation" ><a href="{% url 'first_view' %}">Get New URL</a></li>
+  <li role="presentation" class="active"><a href="#">New URL List</a></li>
+</ul>
+<br>
+<ul>
+<div>
+    <h1>New URL List</h1>
+</div>
+    {% for url in object_list %}
+<table class="table table-bordered">
+    <tr>
+        <th> No. </th>
+        <th> Original URL </th>
+        <th> New URL </th>
+        <th> Creation Date/Time </th>
+    </tr>
+    <tr>
+        <td>{{ url.id }}</td>
+        <td><a href="{{ url.input_url }}">{{ url.input_url }}</a></td>
+        <td><a href="{{ url.input_url }}">http://127.0.0.1:8000/j/{{ url.output_url }}</a></td>
+        <td> {{ url.timestamp }}</td>
+    </tr>
+</table>
+{% endfor %}
+</ul>
+
+{% endblock %}
