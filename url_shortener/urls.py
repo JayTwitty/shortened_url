@@ -16,10 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from app.views import FirstView
+from app.views import FirstView, redirect_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', FirstView.as_view(), name='first_view')
-    #url(r'^create/', BookmarkCreateView.as_view(), name='create_view')
+    url(r'^$', FirstView.as_view(), name='first_view'),
+    url(r'(?P<captured_id>\w+\d+)', redirect_view)
 ]

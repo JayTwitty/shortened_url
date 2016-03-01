@@ -4,7 +4,7 @@ from django.shortcuts import render
 from hashids import Hashids
 
 # Create your views here.
-from django.views.generic import View, CreateView
+from django.views.generic import View
 
 from app.forms import BookmarkForm
 from app.models import Bookmark
@@ -25,10 +25,8 @@ class FirstView(View):
             url_object.output_url=hashid
             url_object.save()
         return HttpResponseRedirect(reverse('first_view'))
-"""
-class BookmarkCreateView(CreateView):
-    model = Bookmark
-    fields = ["input_url", "title", "description"]
-"""
 
-
+def redirect_view(request, captured_id):
+    redirect_object = Bookmark.objects.get(output_url=captured_id)
+    redirect = redirect_object.input_url
+    return HttpResponseRedirect(redirect)
